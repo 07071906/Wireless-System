@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include "FreeRTOS.h"
+#include "task.h"
+
+/*Function Initialization*/
+void Sensor_Task(void *parameter);
+void Led_Task (void *parameter);
+
+int main(void)
+{
+
+xTaskCreate(
+    Sensor_Task, //Function name
+    "Task1",     //Task Name
+    128,
+    NULL,       //Parameter
+    1,          //Priority
+    NULL
+);
+
+xTaskCreate(
+    Led_Task,      //Function name
+    "Led_Task",     //Task Name
+    128,
+    NULL,       //Parameter
+    2,          //Priority
+    NULL
+);
+
+vTaskStartScheduler();
+
+while(1)
+
+{
+
+}
+
+return 0;
+}
+
+void Sensor_Task(void *parameter)
+{
+    while(1)
+    {
+    printf("The sensor is ready to function");
+    vTaskDelay(pdMS_TO_TICKS(100));
+}
+}
+
+void Led_Task (void *parameter)
+{
+    while(1)
+    {
+    printf("The sensor is ready to function");
+    vTaskDelay(pdMS_TO_TICKS(100));
+}
+}
+
+
